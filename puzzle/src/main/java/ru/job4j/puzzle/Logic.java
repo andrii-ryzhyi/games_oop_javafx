@@ -6,9 +6,8 @@ import ru.job4j.puzzle.firuges.Figure;
 import java.util.Arrays;
 
 /**
- * //TODO add comments.
  *
- * @author Petr Arsentev (parsentev@yandex.ru)
+ * @author Andrii Ryzhyi (andrii.nrj@gmail.com)
  * @version $Id$
  * @since 0.1
  */
@@ -71,7 +70,31 @@ public class Logic {
     public boolean isWin() {
         int[][] table = this.convert();
         boolean result = false;
+        for (int i = 0; i < table.length; i++) {
+            if (table[i][i] == 1
+                    && (isHorizontal(table, i) || isVertical(table, i))) {
+                return true;
+            }
+        }
         return result;
+    }
+
+    public boolean isVertical(int[][] table, int cell) {
+        for (int i = 0; i < table.length; i++) {
+            if (table[i][cell] != 1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isHorizontal(int[][] table, int row) {
+        for (int i = 0; i < table.length; i++) {
+            if (table[row][i] != 1) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public int[][] convert() {
